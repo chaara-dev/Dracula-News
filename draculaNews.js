@@ -43,13 +43,6 @@ async function init(metadata) {
         }
     });
 
-    await browser.scripting.insertCSS({
-        target: {
-            tabID: tab.id
-        },
-        files: ["draculaNews.css"]
-    });
-
     return true;
 }
 
