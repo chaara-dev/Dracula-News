@@ -10,7 +10,7 @@ body {
 }
 
 body {
-    border: 2px solid #BD93F9;
+    border: 2px solid #FFB86C;
     border-radius: 10px;
 }
 
@@ -19,11 +19,14 @@ body {
     font-size: 30px;
 
     padding-top: 10px;
+    color: #BD93F9;
 }
 
 .subtitle {
     text-align: center;
     font-size: 15px;
+    
+    color: #8BE9FD;
 }
 
 .credit {
@@ -34,12 +37,12 @@ body {
 }
 
 #dev {
-    color: #8BE9FD;
+    color: #FF79C6;
     text-decoration: none;
 }
 
 #dev:hover {
-    color: #FF79C6;
+    color: #FFB86C;
     text-decoration: underline;
 }
 
@@ -51,4 +54,23 @@ body {
     bottom: 0;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.links {
+    text-align: center;
+    margin-top: 70px;
+}
+
+.buttons {
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+
+    background-color: #44475A;
+    color: #FF79C6;
+}
+
+.buttons:hover {
+    background-color: #44475A;
+    color: #FFB86C;
 }
