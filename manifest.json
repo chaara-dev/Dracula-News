@@ -1,6 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Dracula News",
+    "author": "chaara-dev",
     "version": "1.0",
     "description": "Adds Dracula colour scheme to Hacker News and improves comment UI",
     "homepage_url": "https://github.com/chaara-dev/Dracula-News",
