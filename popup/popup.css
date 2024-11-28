@@ -4,4 +4,18 @@ html, body {
 
     background-color: #282A36;
     color: #F8F8F2;
+
+    font-family: consolas;
+}
+
+.title {
+    text-align: center;
+    font-size: 24px;
+
+    padding-top: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 15px;
 }
