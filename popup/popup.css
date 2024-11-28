@@ -36,3 +36,12 @@ html, body {
     color: #FF79C6;
     text-decoration: underline;
 }
+
+.footer {
+    width: 400px;
+    background-color: #44475A;
+    height: 20px;
+    margin-top: 136px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
