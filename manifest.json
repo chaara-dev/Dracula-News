@@ -4,7 +4,7 @@
     "version": "1.0",
     "description": "Adds Dracula colour scheme to Hacker News and improves comment UI",
     "icons": {
-        "48": "icons/border-48.png"
+        "48": "icons/skull_bold.svg"
     },
     "content_scripts": [
         {
