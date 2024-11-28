@@ -74,3 +74,9 @@ body {
     background-color: #44475A;
     color: #FFB86C;
 }
+
+#version {
+    position: absolute;
+    bottom: 25;
+    right: 5;
+}
