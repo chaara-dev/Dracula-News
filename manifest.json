@@ -6,6 +6,9 @@
     "icons": {
         "48": "icons/skull_bold.svg"
     },
+    "permissions": [
+        "activeTab"
+    ],
     "content_scripts": [
         {
             "matches": [
