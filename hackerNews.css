@@ -1,0 +1,139 @@
+#hnmain {
+    background-color: #1f2028;
+}
+
+#hnmain>tbody>tr:nth-child(1)>td {
+    background-color: #282a36;
+}
+
+#hnmain>tbody>tr:nth-child(2)>td {
+    background-color: #44475a;
+}
+
+#hnmain>tbody>tr:nth-child(3)>td {
+    padding-left: 10px;
+}
+
+a:link {
+    color: #bd93f9;
+}
+
+.comment a:link {
+    color: #bd93f9;
+}
+
+.hnmore a:link,
+a:visited {
+    color: #6272a4;
+}
+
+#hnmain>tbody>tr:nth-child(2)>td>table>tbody>tr>td:nth-child(2)>span>b>a {
+    color: #50fa7b;
+}
+
+.comhead a:link {
+    color: #8be9fd;
+}
+
+.subtext a:visited {
+    color: #6272a4;
+}
+
+.score {
+    color: #ffb86c;
+}
+
+#karma {
+    color: #ffb86c;
+}
+
+#hnmain>tbody>tr:nth-child(1)>td>table>tbody>tr>td:nth-child(3)>span {
+    color: #ffb86c;
+}
+
+#hnmain>tbody>tr:nth-child(4)>td>center:nth-child(6)>form>input[type=text] {
+    background-color: #44475a;
+}
+
+#hnmain>tbody>tr:nth-child(4)>td>center:nth-child(6)>form {
+    color: #50fa7b;
+}
+
+.pagetop a:visited {
+    color: #bd93f9;
+}
+
+.title {
+    color: #6272a4;
+}
+
+body {
+    background-color: #282a36;
+}
+
+.commtext {
+    color: #f8f8f2
+}
+
+textarea,
+input {
+    background-color: #282a36;
+    color: #f8f8f2;
+    border-color: #8be9fd
+}
+
+.__rhn__comment-indent {
+    box-shadow: inset -1px 0 #ccc
+}
+
+.__rhn__highlight-op {
+    color: #ff6000 !important
+}
+
+div.comment span.commtext pre {
+    background: #e4e4e4;
+    border-radius: 3px;
+}
+
+*:not(pre) code {
+    background: #282a36;
+    border-radius: 3px;
+    padding: 0 4px;
+    display: inline-block
+}
+
+font {
+    color: #50faa6;
+}
+
+[indent="0"] {
+    box-shadow: inset -1px 0 #bd93f9
+}
+
+[indent="1"] {
+    box-shadow: inset -1px 0 #8be9fd
+}
+
+[indent="2"] {
+    box-shadow: inset -1px 0 #8be9fd
+}
+
+[indent="3"] {
+    box-shadow: inset -1px 0 #8be9fd
+}
+
+[indent="4"] {
+    box-shadow: inset -1px 0 #8be9fd
+}
+
+[indent="5"] {
+    box-shadow: inset -1px 0 #8be9fd
+}
+
+[indent="5"] {
+    box-shadow: inset -1px 0 #8be9fd
+}
+
+[indent="6"] {
+    box-shadow: inset -1px 0 #8be9fd
+}
