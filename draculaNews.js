@@ -47,7 +47,7 @@ async function init(metadata) {
         target: {
             tabID: tab.id
         },
-        files: ["hackerNews.css"]
+        files: ["draculaNews.css"]
     });
 
     return true;
