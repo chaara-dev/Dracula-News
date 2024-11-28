@@ -9,13 +9,13 @@
     "description": "Adds Dracula colour scheme to Hacker News and improves comment UI",
     "icons": {
         "48": "icons/skull_bold.svg",
-        "96": "icons/skull_bold.svg"
+        "96": "icons/skull_bold.png"
     },
     "permissions": [
         "activeTab"
     ],
     "browser_action": {
-        "default_icon": "icons/skull_bold.svg",
+        "default_icon": "icons/skull_bold.png",
         "default_title": "Dracula News",
         "default_popup": "popup/popup.html"
     },
