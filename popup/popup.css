@@ -75,6 +75,11 @@ body {
     color: #FFB86C;
 }
 
+.buttons:active {
+    background-color: #44475A;
+    color: #50FA7B;
+}
+
 #version {
     position: absolute;
     bottom: 25;
