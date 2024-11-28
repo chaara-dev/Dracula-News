@@ -1,0 +1,79 @@
+name: "Publish"
+on:
+  release:
+    types: [published]
+
+jobs:
+  sign:
+    name: "Release"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+
+      - name: "web-ext lint"
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: lint
+          source: src
+          channel: listed
+
+      - name: "web-ext build"
+        id: web-ext-build
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: build
+          source: src
+          
+      - name: "Get manifest version"
+        id: get_version
+        run: |
+          VERSION=$(jq -r '.version' src/manifest.json)
+          echo "Version: $VERSION"
+          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
+          
+      - name: "Collect sources"
+        run: git archive --format=zip --output=sources.zip ${{ github.ref }}
+
+      - name: "Collect metadata"
+        id: metadata
+        run: echo "json=$(jq -c . < amo_metadata.json)" >> $GITHUB_OUTPUT
+
+      - name: "web-ext sign AMO"
+        id: web-ext-sign
+        uses: kewisch/action-web-ext@v1
+        with:
+          cmd: sign
+
+          # Source must be the zip/xpi file of the add-on. If your add-on is required to submit
+          # source as per https://extensionworkshop.com/documentation/publish/source-code-submission/
+          # policy, you can use sourceCode with a zip file of the original sources. Submitting
+          # source code is not always required, don't do so if you don't need to.
+          # ---------------------------------------------------
+          # source: ${{ steps.web-ext-build.outputs.target }}
+          # sourceCode: sources.zip
+          # channel: unlisted
+          # ---------------------------------------------------
+
+          # Various metadata you can set through the API. See the documentation for the
+          # --amo-metadata parameter to web-ext sign at
+          # https://extensionworkshop.com/documentation/develop/web-ext-command-reference/#web-ext-sign
+          # for more information. You can leave out metaDataFile if all you want to set is approval
+          # notes, release notes, or a license.
+          # -------------------------------
+          # metaDataFile: amo_metadata.json
+          # -------------------------------
+          approvalNotes: "Please find more information at https://github.com/chaara-dev/Dracula-News"
+          releaseNotes: ${{ github.event.release.body }}
+
+          # Specify API secrets. No need to specify apiUrlPrefix, it defaults to AMO production
+          apiKey: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          apiSecret: ${{ secrets.FIREFOX_JWT_SECRET }}
+          timeout: 900000
+
+      - name: "Attach release assets to release"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload ${{ github.event.release.tag_name }} \
+            ${{ steps.web-ext-sign.outputs.target }}
