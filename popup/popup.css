@@ -10,7 +10,7 @@ html, body {
 
 .title {
     text-align: center;
-    font-size: 24px;
+    font-size: 30px;
 
     padding-top: 10px;
 }
@@ -22,7 +22,7 @@ html, body {
 
 .credit {
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
 
     margin-top: 15px;
 }
