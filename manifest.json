@@ -13,6 +13,9 @@
             ],
             "js": [
                 "draculaNews.js"
+            ],
+            "css": [
+                "draculaNews.css"
             ]
         }
     ]
