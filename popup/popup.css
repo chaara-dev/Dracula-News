@@ -19,3 +19,20 @@ html, body {
     text-align: center;
     font-size: 15px;
 }
+
+.credit {
+    text-align: center;
+    font-size: 12px;
+
+    margin-top: 15px;
+}
+
+#dev {
+    color: #8BE9FD;
+    text-decoration: none;
+}
+
+#dev:hover {
+    color: #FF79C6;
+    text-decoration: underline;
+}
