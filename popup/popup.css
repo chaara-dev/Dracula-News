@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     width: 400px;
     height: 250px;
 
@@ -6,6 +7,11 @@ html, body {
     color: #F8F8F2;
 
     font-family: consolas;
+}
+
+body {
+    border: 2px solid #BD93F9;
+    border-radius: 10px;
 }
 
 .title {
