@@ -55,7 +55,7 @@ jobs:
           # ---------------------------------------------------
           source: ${{ steps.web-ext-build.outputs.target }}
           # sourceCode: sources.zip
-          channel: unlisted
+          channel: listed
           # ---------------------------------------------------
 
           # Various metadata you can set through the API. See the documentation for the
