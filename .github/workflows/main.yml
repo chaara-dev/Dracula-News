@@ -11,11 +11,14 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
 
+      - name: Check files
+        run: ls -al
+
       - name: "web-ext lint"
         uses: kewisch/action-web-ext@v1
         with:
           cmd: lint
-          source: Dracula News
+          source: src # NOT WORKING!!!
           channel: listed
 
       - name: "web-ext build"
@@ -23,12 +26,12 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: build
-          source: Dracula News
+          source: src
           
       - name: "Get manifest version"
         id: get_version
         run: |
-          VERSION=$(jq -r '.version' Dracula News/manifest.json)
+          VERSION=$(jq -r '.version' src/manifest.json)
           echo "Version: $VERSION"
           echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
           
