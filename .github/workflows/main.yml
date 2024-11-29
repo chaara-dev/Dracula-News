@@ -50,16 +50,15 @@ jobs:
       - name: "web-ext build download"
         id: web-ext-build-download
         uses: actions/download-artifact@v4
-      
-      - name: "Show File tree"
-        run: ls
+        with:
+          path: ${{ github.workspace }}
 
       - name: "web-ext sign AMO"
         id: web-ext-sign-amo
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ steps.web-ext-build-download.outputs.download-path }}/build-addon.*
+          source: ${{ steps.web-ext-build-download.outputs.download-path }}/built-addon.zip
         
           channel: listed
   
@@ -78,16 +77,15 @@ jobs:
       - name: "web-ext build download"
         id: web-ext-build-download
         uses: actions/download-artifact@v4
-      
-      - name: "Show File tree"
-        run: ls
+        with:
+          path: ${{ github.workspace }}
 
       - name: "web-ext sign AMO"
         id: web-ext-sign-amo
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ steps.web-ext-build-download.outputs.download-path }}/build-addon.*
+          source: ${{ steps.web-ext-build-download.outputs.download-path }}/built-addon.zip
         
           channel: unlisted
   
@@ -104,4 +102,3 @@ jobs:
         run: |
           gh release upload ${{ github.event.release.tag_name }} \
             ${{ steps.web-ext-sign-amo.outputs.target }}
-
