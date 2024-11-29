@@ -7,6 +7,11 @@
     },
     "version": "1.1",
     "description": "Adds Dracula colour scheme to Hacker News and improves comment UI",
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{f83548af-9905-4f1f-b408-881bd43dff3f}"
+        }
+    },
     "icons": {
         "48": "icons/skull_bold.svg",
         "96": "icons/skull_bold.png"
