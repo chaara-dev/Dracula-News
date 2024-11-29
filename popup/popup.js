@@ -1,2 +1,4 @@
 let versionNum = browser.runtime.getManifest().version
-document.getElementById("version").innerText = `v${versionNum}`
+const version = document.getElementById("version")
+version.innerText = `v${versionNum}`
+version.href = `https://github.com/chaara-dev/Dracula-News/releases/tag/${version}`
