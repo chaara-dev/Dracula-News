@@ -52,17 +52,16 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-upload
-          path: ${{ github.workspace }}/web-ext-artifacts./*.zip
       
       - name: "Show File tree"
-        run: ls -al
+        run: ls
 
       - name: "web-ext sign AMO"
         id: web-ext-sign-amo
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ github.workspace }}/web-ext-artifacts./*.zip
+          source: ${{ github.workspace }}/web-ext-artifacts/*.zip
         
           channel: listed
   
@@ -83,10 +82,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-upload
-          path: ${{ github.workspace }}/web-ext-artifacts./*.zip
       
       - name: "Show File tree"
-        run: ls -al
+        run: ls
 
       - name: "web-ext sign XPI"
         id: web-ext-sign-xpi
