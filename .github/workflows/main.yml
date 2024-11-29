@@ -47,29 +47,13 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-
-          # Source must be the zip/xpi file of the add-on. If your add-on is required to submit
-          # source as per https://extensionworkshop.com/documentation/publish/source-code-submission/
-          # policy, you can use sourceCode with a zip file of the original sources. Submitting
-          # source code is not always required, don't do so if you don't need to.
-          # ---------------------------------------------------
           source: ${{ steps.web-ext-build.outputs.target }}
-          # sourceCode: sources.zip
+          
           channel: listed
-          # ---------------------------------------------------
 
-          # Various metadata you can set through the API. See the documentation for the
-          # --amo-metadata parameter to web-ext sign at
-          # https://extensionworkshop.com/documentation/develop/web-ext-command-reference/#web-ext-sign
-          # for more information. You can leave out metaDataFile if all you want to set is approval
-          # notes, release notes, or a license.
-          # -------------------------------
-          # metaDataFile: amo_metadata.json
-          # -------------------------------
-          approvalNotes: "Please find more information at https://github.com/chaara-dev/Dracula-News"
+          approvalNotes: "Please find more information at https://github.com/chaara-dev/Dracula-News/releases"
           releaseNotes: ${{ github.event.release.body }}
 
-          # Specify API secrets. No need to specify apiUrlPrefix, it defaults to AMO production
           apiKey: ${{ secrets.FIREFOX_JWT_ISSUER }}
           apiSecret: ${{ secrets.FIREFOX_JWT_SECRET }}
           timeout: 900000
