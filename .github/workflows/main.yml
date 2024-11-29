@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-upload
-          path: ${{ github.workspace }}/*.zip
+          path: ${{ github.workspace }}/web-ext-artifacts/*.zip
           
       - name: "Get manifest version"
         id: get_version
@@ -62,7 +62,7 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ steps.web-ext-build-download.outputs }}
+          source: ${{ github.workspace }}
         
           channel: listed
   
@@ -89,7 +89,7 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ steps.web-ext-build-download.outputs }}
+          source: ${{ github.workspace }}
         
           channel: unlisted
   
