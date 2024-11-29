@@ -1,4 +1,4 @@
-name: "Publish to AMO"
+name: "Build and Publish"
 on:
   release:
     types: [published]
