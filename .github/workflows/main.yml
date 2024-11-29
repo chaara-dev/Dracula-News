@@ -15,7 +15,7 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: lint
-          source: "Dracula News"
+          source: Dracula News
           channel: listed
 
       - name: "web-ext build"
@@ -23,12 +23,12 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: build
-          source: "Dracula News"
+          source: Dracula News
           
       - name: "Get manifest version"
         id: get_version
         run: |
-          VERSION=$(jq -r '.version' "Dracula News"/manifest.json)
+          VERSION=$(jq -r '.version' Dracula News/manifest.json)
           echo "Version: $VERSION"
           echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
           
