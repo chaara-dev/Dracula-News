@@ -53,9 +53,9 @@ jobs:
           # policy, you can use sourceCode with a zip file of the original sources. Submitting
           # source code is not always required, don't do so if you don't need to.
           # ---------------------------------------------------
-          # source: ${{ steps.web-ext-build.outputs.target }}
+          source: ${{ steps.web-ext-build.outputs.target }}
           # sourceCode: sources.zip
-          # channel: unlisted
+          channel: unlisted
           # ---------------------------------------------------
 
           # Various metadata you can set through the API. See the documentation for the
