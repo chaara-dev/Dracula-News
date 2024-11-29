@@ -25,7 +25,7 @@ body {
 .subtitle {
     text-align: center;
     font-size: 15px;
-    
+
     color: #8BE9FD;
 }
 
@@ -44,6 +44,10 @@ body {
 #dev:hover {
     color: #FFB86C;
     text-decoration: underline;
+}
+
+#dev:active {
+    color: #50FA7B;
 }
 
 .footer {
@@ -80,8 +84,22 @@ body {
     color: #50FA7B;
 }
 
-#version {
+#stats {
     position: absolute;
     bottom: 25;
     right: 5;
+}
+
+#version {
+    text-decoration: none;
+    color: #F8F8F2;
+}
+
+#version:hover {
+    text-decoration: underline;
+    color: #FFB86C;
+}
+
+#version:active {
+    color: #50FA7B;
 }
