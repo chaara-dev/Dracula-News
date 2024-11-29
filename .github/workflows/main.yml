@@ -48,6 +48,7 @@ jobs:
 
   publish_amo:
     name: Publish to AMO
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: "web-ext build download"
@@ -74,6 +75,7 @@ jobs:
 
   publish_xpi:
     name: Publish as XPI
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: "web-ext build download"
