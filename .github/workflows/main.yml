@@ -18,7 +18,7 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: lint
-          source: src # NOT WORKING!!!
+          source: ${{ github.workspace }}
           channel: listed
 
       - name: "web-ext build"
@@ -26,12 +26,12 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: build
-          source: src
+          source: ${{ github.workspace }}
           
       - name: "Get manifest version"
         id: get_version
         run: |
-          VERSION=$(jq -r '.version' src/manifest.json)
+          VERSION=$(jq -r '.version' ${{ github.workspace }}/manifest.json)
           echo "Version: $VERSION"
           echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
           
