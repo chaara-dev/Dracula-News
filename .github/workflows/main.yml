@@ -42,10 +42,6 @@ jobs:
       - name: "Collect sources"
         run: git archive --format=zip --output=sources.zip ${{ github.ref }}
 
-      - name: "Collect metadata"
-        id: metadata
-        run: echo "json=$(jq -c . < amo_metadata.json)" >> $GITHUB_OUTPUT
-
   publish_amo:
     name: Publish to AMO
     needs: build
@@ -62,7 +58,7 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ github.workspace }}
+          source: ${{ github.workspace }}/web-ext-artifacts./*.zip
         
           channel: listed
   
@@ -89,7 +85,7 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ github.workspace }}
+          source: ${{ github.workspace }}/web-ext-artifacts/*.zip
         
           channel: unlisted
   
