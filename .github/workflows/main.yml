@@ -53,12 +53,15 @@ jobs:
         with:
           path: ${{ github.workspace }}
 
+      - name: "Show Downloaded Files"
+        run: ls -R ${{ steps.web-ext-build-download.outputs.download-path }}
+
       - name: "web-ext sign AMO"
         id: web-ext-sign-amo
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ steps.web-ext-build-download.outputs.download-path }}/built-addon/built-addon.zip
+          source: ${{ steps.web-ext-build-download.outputs.download-path }}/*.zip
         
           channel: listed
   
@@ -80,12 +83,15 @@ jobs:
         with:
           path: ${{ github.workspace }}
 
+      - name: "Show Downloaded Files"
+        run: ls -R ${{ steps.web-ext-build-download.outputs.download-path }}
+
       - name: "web-ext sign AMO"
         id: web-ext-sign-amo
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ steps.web-ext-build-download.outputs.download-path }}/built-addon/built-addon.zip
+          source: ${{ steps.web-ext-build-download.outputs.download-path }}/*.zip
         
           channel: unlisted
   
