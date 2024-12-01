@@ -24,7 +24,7 @@ jobs:
         with:
           cmd: build
           source: ${{ github.workspace }}
-          filename: "dracula_news"
+          filename: "dracula_news-{version}.zip"
 
       - name: "Upload Built Artifact"
         id: web-ext-build-upload
