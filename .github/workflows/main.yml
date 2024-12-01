@@ -83,15 +83,18 @@ jobs:
         with:
           path: ${{ github.workspace }}
 
-      - name: "Show Downloaded Files"
+      - name: "Show Download Path"
         run: ls -R ${{ steps.web-ext-build-download.outputs.download-path }}
+
+      - name: "Show All Files"
+        run: ls -R
 
       - name: "web-ext sign AMO"
         id: web-ext-sign-amo
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ steps.web-ext-build-download.outputs.download-path }}/*.zip
+          source: ${{ steps.web-ext-build-download.outputs.download-path }}.zip
         
           channel: unlisted
   
