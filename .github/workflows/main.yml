@@ -88,13 +88,16 @@ jobs:
 
       - name: "Show All Files"
         run: ls -R
+      
+      - name: "Show Build-Addon ?"
+        run: ls build-addon
 
       - name: "web-ext sign AMO"
         id: web-ext-sign-amo
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ steps.web-ext-build-download.outputs.download-path }}.zip
+          source: ${{ steps.web-ext-build-download.outputs.download-path }}/built-addon/*.zip
         
           channel: unlisted
   
