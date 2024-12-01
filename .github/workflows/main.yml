@@ -52,6 +52,7 @@ jobs:
         id: web-ext-build-download
         uses: actions/download-artifact@v4
         with:
+          name: built-addon
           path: ${{ github.workspace }}
 
       - name: "Show Downloaded Files"
@@ -82,23 +83,21 @@ jobs:
         id: web-ext-build-download
         uses: actions/download-artifact@v4
         with:
+          name: built-addon
           path: ${{ github.workspace }}
 
       - name: "Show Download Path"
-        run: ls -R ${{ steps.web-ext-build-download.outputs.download-path }}
+        run: echo ${{ steps.web-ext-build-download.outputs.download-path }}
 
       - name: "Show All Files"
         run: ls -R
-      
-      - name: "Show Build-Addon ?"
-        run: ls built-addon
 
-      - name: "web-ext sign AMO"
-        id: web-ext-sign-amo
+      - name: "web-ext sign XPI"
+        id: web-ext-sign-xpi
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ steps.web-ext-build-download.outputs.download-path }}/built-addon/dracula_news-{version}.zip
+          source: ${{ github.workspace }}/built-addon/dracula_news-{version}.zip
         
           channel: unlisted
   
@@ -114,4 +113,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release upload ${{ github.event.release.tag_name }} \
-            ${{ steps.web-ext-sign-amo.outputs.target }}
+            ${{ steps.web-ext-sign-xpi.outputs.target }}
