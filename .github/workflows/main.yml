@@ -24,6 +24,7 @@ jobs:
         with:
           cmd: build
           source: ${{ github.workspace }}
+          filename: "dracula_news"
 
       - name: "Upload Built Artifact"
         id: web-ext-build-upload
@@ -97,7 +98,7 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ steps.web-ext-build-download.outputs.download-path }}/built-addon/*.zip
+          source: ${{ steps.web-ext-build-download.outputs.download-path }}/built-addon/dracula_news-{version}.zip
         
           channel: unlisted
   
