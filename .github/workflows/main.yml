@@ -99,7 +99,7 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ github.workspace }}/built-addon/dracula_news-${{ needs.build.outputs.release-version }}.zip
+          source: ${{ github.workspace }}/dracula_news-${{ needs.build.outputs.release-version }}.zip
         
           channel: unlisted
   
