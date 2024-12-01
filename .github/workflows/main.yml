@@ -7,6 +7,8 @@ jobs:
   build:
     name: "Build"
     runs-on: ubuntu-latest
+    outputs:
+      release-version: ${{ steps.get_version.outputs.release_version }}
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
@@ -38,7 +40,7 @@ jobs:
         run: |
           VERSION=$(jq -r '.version' ${{ github.workspace }}/manifest.json)
           echo "Version: $VERSION"
-          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
+          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_OUTPUT
           
       - name: "Collect sources"
         run: git archive --format=zip --output=sources.zip ${{ github.ref }}
@@ -97,7 +99,7 @@ jobs:
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ github.workspace }}/built-addon/dracula_news-{version}.zip
+          source: ${{ github.workspace }}/built-addon/dracula_news-${{ needs.build.outputs.release-version }}.zip
         
           channel: unlisted
   
