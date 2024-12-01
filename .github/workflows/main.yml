@@ -90,7 +90,7 @@ jobs:
         run: ls -R
       
       - name: "Show Build-Addon ?"
-        run: ls build-addon
+        run: ls built-addon
 
       - name: "web-ext sign AMO"
         id: web-ext-sign-amo
