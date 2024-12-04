@@ -57,15 +57,12 @@ jobs:
           name: built-addon
           path: ${{ github.workspace }}
 
-      - name: "Show Downloaded Files"
-        run: ls -R ${{ steps.web-ext-build-download.outputs.download-path }}
-
       - name: "web-ext sign AMO"
         id: web-ext-sign-amo
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ steps.web-ext-build-download.outputs.download-path }}/*.zip
+          source: ${{ github.workspace }}/dracula_news-${{ needs.build.outputs.release-version }}.zip
         
           channel: listed
   
@@ -75,6 +72,12 @@ jobs:
           apiKey: ${{ secrets.FIREFOX_JWT_ISSUER }}
           apiSecret: ${{ secrets.FIREFOX_JWT_SECRET }}
           timeout: 900000
+
+      - name: "Attach release assets to release"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload ${{ github.event.release.tag_name }} ${{ steps.web-ext-sign-amo.outputs.target }}
 
   publish_xpi:
     name: Publish as XPI
@@ -87,12 +90,6 @@ jobs:
         with:
           name: built-addon
           path: ${{ github.workspace }}
-
-      - name: "Show Download Path"
-        run: echo ${{ steps.web-ext-build-download.outputs.download-path }}
-
-      - name: "Show All Files"
-        run: ls -R
 
       - name: "web-ext sign XPI"
         id: web-ext-sign-xpi
@@ -109,10 +106,3 @@ jobs:
           apiKey: ${{ secrets.FIREFOX_JWT_ISSUER }}
           apiSecret: ${{ secrets.FIREFOX_JWT_SECRET }}
           timeout: 900000
-
-      - name: "Attach release assets to release"
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release upload ${{ github.event.release.tag_name }} \
-            ${{ steps.web-ext-sign-xpi.outputs.target }}
