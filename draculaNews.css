@@ -106,34 +106,10 @@ font {
     color: #50faa6;
 }
 
-[indent="0"] {
-    box-shadow: inset -1px 0 #bd93f9
+.ind[indent="0"] {
+    box-shadow: inset -1px 0 #bd93f9;
 }
 
-[indent="1"] {
-    box-shadow: inset -1px 0 #8be9fd
-}
-
-[indent="2"] {
-    box-shadow: inset -1px 0 #8be9fd
-}
-
-[indent="3"] {
-    box-shadow: inset -1px 0 #8be9fd
-}
-
-[indent="4"] {
-    box-shadow: inset -1px 0 #8be9fd
-}
-
-[indent="5"] {
-    box-shadow: inset -1px 0 #8be9fd
-}
-
-[indent="5"] {
-    box-shadow: inset -1px 0 #8be9fd
-}
-
-[indent="6"] {
-    box-shadow: inset -1px 0 #8be9fd
+.ind {
+    box-shadow: inset -1px 0 #8be9fd;
 }
