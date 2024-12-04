@@ -1,14 +1,12 @@
-name: "Build and Publish"
+name: "Build and publish to AMO"
 on:
   release:
     types: [published]
 
 jobs:
-  build:
-    name: "Build"
+  sign:
+    name: "Release"
     runs-on: ubuntu-latest
-    outputs:
-      release-version: ${{ steps.get_version.outputs.release_version }}
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
@@ -26,49 +24,33 @@ jobs:
         with:
           cmd: build
           source: ${{ github.workspace }}
-          filename: "dracula_news-{version}.zip"
-
-      - name: "Upload Built Artifact"
-        id: web-ext-build-upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: built-addon
-          path: ${{ steps.web-ext-build.outputs.target }}
           
       - name: "Get manifest version"
         id: get_version
         run: |
           VERSION=$(jq -r '.version' ${{ github.workspace }}/manifest.json)
           echo "Version: $VERSION"
-          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
           
       - name: "Collect sources"
         run: git archive --format=zip --output=sources.zip ${{ github.ref }}
 
-  publish_amo:
-    name: Publish to AMO
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: "web-ext build download"
-        id: web-ext-build-download
-        uses: actions/download-artifact@v4
-        with:
-          name: built-addon
-          path: ${{ github.workspace }}
+      - name: "Collect metadata"
+        id: metadata
+        run: echo "json=$(jq -c . < amo_metadata.json)" >> $GITHUB_OUTPUT
 
       - name: "web-ext sign AMO"
-        id: web-ext-sign-amo
+        id: web-ext-sign
         uses: kewisch/action-web-ext@v1
         with:
           cmd: sign
-          source: ${{ github.workspace }}/dracula_news-${{ needs.build.outputs.release-version }}.zip
-        
+          source: ${{ steps.web-ext-build.outputs.target }}
+          
           channel: listed
-  
+
           approvalNotes: "Please find more information at https://github.com/chaara-dev/Dracula-News/releases"
           releaseNotes: ${{ github.event.release.body }}
-  
+
           apiKey: ${{ secrets.FIREFOX_JWT_ISSUER }}
           apiSecret: ${{ secrets.FIREFOX_JWT_SECRET }}
           timeout: 900000
@@ -77,32 +59,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release upload ${{ github.event.release.tag_name }} ${{ steps.web-ext-sign-amo.outputs.target }}
-
-  publish_xpi:
-    name: Publish as XPI
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: "web-ext build download"
-        id: web-ext-build-download
-        uses: actions/download-artifact@v4
-        with:
-          name: built-addon
-          path: ${{ github.workspace }}
-
-      - name: "web-ext sign XPI"
-        id: web-ext-sign-xpi
-        uses: kewisch/action-web-ext@v1
-        with:
-          cmd: sign
-          source: ${{ github.workspace }}/dracula_news-${{ needs.build.outputs.release-version }}.zip
-        
-          channel: unlisted
-  
-          approvalNotes: "Please find more information at https://github.com/chaara-dev/Dracula-News/releases"
-          releaseNotes: ${{ github.event.release.body }}
-  
-          apiKey: ${{ secrets.FIREFOX_JWT_ISSUER }}
-          apiSecret: ${{ secrets.FIREFOX_JWT_SECRET }}
-          timeout: 900000
+          gh release upload ${{ github.event.release.tag_name }} \
+            ${{ steps.web-ext-sign.outputs.target }}
