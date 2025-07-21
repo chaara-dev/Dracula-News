@@ -82,12 +82,8 @@ input {
     border-color: #8be9fd
 }
 
-.__rhn__comment-indent {
-    box-shadow: inset -1px 0 #ccc
-}
-
-.__rhn__highlight-op {
-    color: #ff6000 !important
+.highlightOP {
+    color: #F1FA8C !important
 }
 
 div.comment span.commtext pre {
@@ -106,10 +102,14 @@ font {
     color: #50faa6;
 }
 
-.ind[indent="0"] {
-    box-shadow: inset -1px 0 #bd93f9;
+[indent] {
+    box-shadow: inset -1px 0 #8be9fd
 }
 
-.ind {
-    box-shadow: inset -1px 0 #8be9fd;
+[indent="0"] {
+    box-shadow: inset -1px 0 #bd93f9
+}
+
+[indent="1"] {
+    box-shadow: inset -1px 0 #1897ff
 }
