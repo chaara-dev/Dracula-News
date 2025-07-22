@@ -29,12 +29,19 @@
             "matches": [
                 "*://news.ycombinator.com/*"
             ],
+            "css": [
+                "draculaNews.css"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "*://news.ycombinator.com/*"
+            ],
             "js": [
                 "draculaNews.js"
             ],
-            "css": [
-                "draculaNews.css"
-            ]
+            "run_at": "document_idle"
         }
     ]
 }
